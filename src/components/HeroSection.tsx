@@ -44,11 +44,7 @@ const HeroSection = () => {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           variants={heroImageVariant}
-          style={{
-            // ACTION REQUIRED: Replace with high-quality image showing cars and appliances
-            backgroundImage:
-              'url("/images/hero-background-cars-appliances.jpg")',
-          }}
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80")' }}
         ></motion.div>
         {/* Overlay with subtle animation */}
         <motion.div
