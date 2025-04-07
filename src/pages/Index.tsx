@@ -1,8 +1,7 @@
-
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ProductShowcase from "@/components/ProductShowcase";
+import ProductCategoriesSection from "@/components/ProductCategoriesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ContactSection from "@/components/ContactSection";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
@@ -14,8 +13,8 @@ const Index = () => {
       <Header />
       <main className="pt-16">
         <HeroSection />
+        <ProductCategoriesSection />
         <AboutSection />
-        <ProductShowcase />
         <WhyChooseUs />
         <ContactSection />
       </main>
