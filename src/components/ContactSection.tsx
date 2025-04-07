@@ -95,7 +95,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="font-medium text-gray-800">Phone</h4>
                   <p className="text-gray-600">Tanzania: +255 123 456 789</p>
-                  <p className="text-gray-600">Japan: +81 123 456 7890</p>
+                  <p className="text-gray-600">Japan: +81-80‑4807‑9472</p>
                 </div>
               </motion.div>
 
@@ -157,7 +157,7 @@ const ContactSection = () => {
                 <button
                   className="bg-white text-green-600 font-medium py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors flex items-center space-x-2"
                   onClick={() =>
-                    window.open("https://whatsapp.com/group/link", "_blank")
+                    window.open("https://chat.whatsapp.com/CRGLBCmUd5gGIHV0XzJibs", "_blank")
                   }
                 >
                   <MessageSquare size={20} />

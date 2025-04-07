@@ -56,8 +56,8 @@ const Footer = () => {
               <div>
                 <p className="font-medium">Japan</p>
                 <address className="text-gray-300 not-italic">
-                  456 Sakura Avenue<br />
-                  Tokyo, Japan
+                Chiba ken ichikawa shi minani gyotoku 1-12-306<br />
+                  CHIBA, Japan
                 </address>
               </div>
             </div>
