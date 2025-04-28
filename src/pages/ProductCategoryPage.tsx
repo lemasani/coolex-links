@@ -4,6 +4,7 @@ import { categories } from "@/data/categories";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
+import { openWhatsAppChat, whatsAppMessages } from "@/utils/whatsapp";
 
 // Sample product data - you would replace this with actual API calls or data
 const sampleProducts = {
@@ -80,9 +81,6 @@ const ProductCategoryPage = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState(null);
 
-  // WHATSAPP_NUMBER should be configured in environment variables
-  const WHATSAPP_NUMBER = "255757909821";
-
   useEffect(() => {
     if (categoryId) {
       // Find the category data
@@ -102,10 +100,9 @@ const ProductCategoryPage = () => {
   }
 
   const handleInquiry = (productName) => {
-    const message = encodeURIComponent(
-      `Hello Coolex-Links! I'm interested in the ${productName} from your ${category.name} category.`
+    openWhatsAppChat(
+      whatsAppMessages.productInquiry(productName, category.name)
     );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
 
   return (
@@ -156,15 +153,9 @@ const ProductCategoryPage = () => {
             No products found in this category.
           </p>
           <Button
-            onClick={() => {
-              const message = encodeURIComponent(
-                `Hello Coolex-Links! I'm interested in your ${category.name} products and would like to know more.`
-              );
-              window.open(
-                `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
-                "_blank"
-              );
-            }}
+            onClick={() =>
+              openWhatsAppChat(whatsAppMessages.categoryInquiry(category.name))
+            }
             className="mt-4 bg-green-600 hover:bg-green-700 text-white"
           >
             <MessageSquare size={18} className="mr-2" />
