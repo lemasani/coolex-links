@@ -84,6 +84,7 @@ const ProductCategoriesSection = () => {
                 icon={category.icon}
                 imageUrl={category.imageUrl}
                 badgeText={category.badgeText}
+                path={category.path}
                 onInquire={() => handleCategoryInquiry(category.name)}
               />
             </motion.div>
