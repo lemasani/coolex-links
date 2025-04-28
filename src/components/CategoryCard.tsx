@@ -1,9 +1,8 @@
-import React from "react";
 import { LucideIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface CategoryCardProps {
   name: string;
@@ -11,8 +10,8 @@ interface CategoryCardProps {
   icon: LucideIcon;
   imageUrl?: string;
   badgeText?: string;
-  className?: string;
-  onInquire?: () => void;
+  path: string; // Add path property for navigation
+  onInquire?: () => void; // Keep this for backwards compatibility
 }
 
 const CategoryCard = ({
@@ -21,39 +20,51 @@ const CategoryCard = ({
   icon: Icon,
   imageUrl,
   badgeText,
-  className,
+  path,
   onInquire,
 }: CategoryCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    } else if (onInquire) {
+      onInquire();
+    }
+  };
+
   return (
-    <Card
-      className={cn(
-        "overflow-hidden transition-all hover:shadow-lg",
-        className
-      )}
-    >
-      {imageUrl && (
-        <div className="h-48 overflow-hidden">
-          <img
-            src={imageUrl}
-            alt={name}
-            className="w-full h-full object-cover transition-transform hover:scale-105"
-          />
-        </div>
-      )}
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl font-bold">{name}</CardTitle>
+    <Card className="overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+      {/* Image container with relative positioning for badge overlay */}
+      <div className="relative">
+        {/* Badge positioned on the top right */}
+        {badgeText && (
+          <Badge className="absolute top-2 right-2 z-10" variant="secondary">
+            {badgeText}
+          </Badge>
+        )}
+
+        {/* Image display if available */}
+        {imageUrl && (
+          <div className="h-48 w-full overflow-hidden">
+            <img
+              src={imageUrl}
+              alt={name}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
+      </div>
+
+      <CardHeader className="flex flex-row items-center gap-4 pt-6">
+        <CardTitle className="text-xl">{name}</CardTitle>
         <div className="h-10 w-10 rounded-full bg-coolex-accent/10 flex items-center justify-center">
           <Icon className="h-5 w-5 text-coolex-accent" />
         </div>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
-        {badgeText && (
-          <Badge variant="secondary" className="mb-3">
-            {badgeText}
-          </Badge>
-        )}
-        <Button variant="outline" className="w-full mt-2" onClick={onInquire}>
+        <Button variant="outline" className="w-full mt-2" onClick={handleClick}>
           Learn More
         </Button>
       </CardContent>
